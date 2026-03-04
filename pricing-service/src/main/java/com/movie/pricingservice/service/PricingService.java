@@ -19,15 +19,21 @@ public class PricingService {
     public void init() {
         if (pricingRepository.count() == 0) {
             Pricing odc = new Pricing();
-            odc.setName("ODC");
+            odc.setMovieName("ODC");
             odc.setBasePrice(500.0);
             odc.setInternetFee(100.0);
+            odc.setCinemahall("Cinema Hall 1");
+            odc.setSeatType("Standard");
+            odc.setDayType("Weekday");
             pricingRepository.save(odc);
 
             Pricing vip = new Pricing();
-            vip.setName("BOX");
+            vip.setMovieName("BOX");
             vip.setBasePrice(1200.0);
             vip.setInternetFee(150.0);
+            vip.setCinemahall("Cinema Hall 2");
+            vip.setSeatType("VIP");
+            vip.setDayType("Weekend");
             pricingRepository.save(vip);
         }
     }
@@ -40,8 +46,8 @@ public class PricingService {
         return pricingRepository.findById(id);
     }
 
-    public Optional<Pricing> getPricingByName(String name) {
-        return pricingRepository.findByName(name);
+    public Optional<Pricing> getPricingByName(String movieName) {
+        return pricingRepository.findByMovieName(movieName);
     }
 
     public Pricing createPricing(Pricing pricing) {
@@ -50,9 +56,12 @@ public class PricingService {
 
     public Pricing updatePricing(Long id, Pricing updatedPricing) {
         return pricingRepository.findById(id).map(p -> {
-            p.setName(updatedPricing.getName());
+            p.setMovieName(updatedPricing.getMovieName());
             p.setBasePrice(updatedPricing.getBasePrice());
             p.setInternetFee(updatedPricing.getInternetFee());
+            p.setCinemahall(updatedPricing.getCinemahall());
+            p.setSeatType(updatedPricing.getSeatType());
+            p.setDayType(updatedPricing.getDayType());
             return pricingRepository.save(p);
         }).orElseThrow(() -> new RuntimeException("Pricing not found: " + id));
     }
