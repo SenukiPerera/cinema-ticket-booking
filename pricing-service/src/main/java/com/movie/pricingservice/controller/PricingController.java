@@ -27,11 +27,26 @@ public class PricingController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/name/{name}")
-    public ResponseEntity<Pricing> getPricingByName(@PathVariable String name) {
-        return pricingService.getPricingByName(name)
+    @GetMapping("/movieName/{movieName}")
+    public ResponseEntity<Pricing> getPricingByName(@PathVariable String movieName) {
+        return pricingService.getPricingByName(movieName)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/cinemahall/{cinemahall}")
+    public ResponseEntity<List<Pricing>> getPricingByCinemahall(@PathVariable String cinemahall) {
+        return ResponseEntity.ok(pricingService.getPricingByCinemahall(cinemahall));
+    }
+
+    @GetMapping("/seatType/{seatType}")
+    public ResponseEntity<List<Pricing>> getPricingBySeatType(@PathVariable String seatType) {
+        return ResponseEntity.ok(pricingService.getPricingBySeatType(seatType));
+    }
+
+    @GetMapping("/dayType/{dayType}")
+    public ResponseEntity<List<Pricing>> getPricingByDayType(@PathVariable String dayType) {
+        return ResponseEntity.ok(pricingService.getPricingByDayType(dayType));
     }
 
     @PostMapping

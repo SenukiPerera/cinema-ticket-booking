@@ -11,9 +11,12 @@ public class Pricing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String movieName;
     private double basePrice;
     private double internetFee;
+    private String cinemahall;
+    private String seatType;
+    private String dayType;
 
     public Pricing() {
     }
@@ -26,12 +29,20 @@ public class Pricing {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getMovieName() {
+        return movieName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getCinemahall() {
+        return cinemahall;
+    }
+
+    public void setCinemahall(String cinemahall) {
+        this.cinemahall = cinemahall;
     }
 
     public double getBasePrice() {
@@ -48,5 +59,21 @@ public class Pricing {
 
     public void setInternetFee(double internetFee) {
         this.internetFee = internetFee;
+    }
+
+    public String getSeatType() {
+        return seatType;
+    }
+
+    public void setSeatType(String seatType) {
+        this.seatType = seatType;
+    }
+
+    public String getDayType() {
+        return dayType;
+    }
+
+    public void setDayType(String dayType) {
+        this.dayType = dayType;
     }
 }
